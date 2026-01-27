@@ -4,6 +4,7 @@ import MainLayout from '../layouts/MainLayout';
 // sections
 import HomeHero from '../sections/HomeHero';
 import Skills from '../sections/Skills';
+import Certifications from '../sections/Certifications';
 import Works from '../sections/Works';
 import Contact from '../sections/Contact';
 // mock
@@ -24,6 +25,7 @@ export default function Home() {
       {/* Skill Section  */}
       <Skills />
       {/* Works Section  */}
+      <Certifications />
       <Works />
       {/* Contact Section  */}
       <Contact />

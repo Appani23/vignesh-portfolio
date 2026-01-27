@@ -35,8 +35,19 @@ export default function Header({ darkModeEnabled, toggleMode }) {
         >
           <ul className="flex items-center space-x-3">
             <li>
+  <a href="#skills" className="text-sm xs:text-base">
+    Skills
+  </a>
+</li>
+<li>
+  <a href="#certifications" className="text-sm xs:text-base">
+    Certifications
+  </a>
+</li>
+
+            <li>
               <a href="#works" className="text-sm xs:text-base">
-                Works
+                MyWork
               </a>
             </li>
             <li>
@@ -45,6 +56,7 @@ export default function Header({ darkModeEnabled, toggleMode }) {
               </a>
             </li>
             <li>
+             
               <button
                 className="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 onClick={toggleMode}

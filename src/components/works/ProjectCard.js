@@ -15,9 +15,12 @@ export default function ProjectCard({ imgSrc, title, description, repoLink, sour
 
         {techIcons && techIcons.length > 0 && (
           <div className="mt-5 mb-7 flex flex-wrap gap-5">
-            {techIcons.map(({ icon }, i) => (
-              <Iconify key={`icon-${i}`} classes="text-2xl opacity-80" icon={icon} />
-            ))}
+            {techIcons
+  .filter((t) => t && t.icon)
+  .map(({ icon }, i) => (
+    <Iconify key={`icon-${i}`} classes="text-2xl opacity-80" icon={icon} />
+  ))}
+
           </div>
         )}
       </div>
