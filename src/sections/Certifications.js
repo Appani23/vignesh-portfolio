@@ -60,9 +60,11 @@ const CERTIFICATIONS = [
 export default function Certifications() {
   return (
     <>
-      <div id="certifications" />
+      <section
+  id="certifications"
+  className="container mx-auto mt-16 px-5 text-center sm:mt-10 md:px-1 scroll-mt-24"
+>
 
-      <section className="container mx-auto mt-16 px-5 text-center sm:mt-10 md:px-1">
         <HeadingAnimate>
           <h2 className="mb-3 font-lato text-3xl font-semibold text-primary-700 dark:text-primary-300 sm:text-4xl">
             Certifications
