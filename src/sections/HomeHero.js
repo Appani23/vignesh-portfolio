@@ -29,12 +29,20 @@ export default function HomeHero() {
           transition={{
             type: 'spring',
             bounce: 0.5,
-            duration: 3,
-            delay: 1.7,
+            duration: 3.0,
+            delay: 0.3,
           }}
           viewport={{ once: true }}
         >
-          <Image src={mainImg} className="w-52 object-contain lg:w-64" alt="Logo" />
+          <Image
+  src={mainImg}
+  alt="Vignesh Appani"
+  width={1500}
+  height={1500}
+  priority
+  className="h-56 w-56 rounded-full object-cover shadow-2xl ring-4 ring-white dark:ring-gray-800 sm:h-64 sm:w-64 lg:h-72 lg:w-72"
+/>
+
         </motion.div>
         <h1 className="z-50 font-lato text-2xl font-bold sm:text-4xl md:font-semibold">
           Hi, Im{' '}
@@ -53,7 +61,15 @@ export default function HomeHero() {
           </span>
         </h1>
         <p className="text-center text-sm sm:text-base md:w-3/5">{aboutParagraph}</p>
-        {/* Social Icons */}
+        <a
+  href="/Vignesh_Appani_Resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-4 inline-block rounded-lg bg-primary-700 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-primary-800 dark:bg-primary-300 dark:text-black dark:hover:bg-primary-400"
+>
+  Download Resume
+</a>
+
         <SocialLinks />
       </div>
 

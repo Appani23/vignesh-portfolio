@@ -1,23 +1,28 @@
 export const SOCIAL_LINKS = [
   {
-    link: 'https://twitter.com/dhavalCode',       
-    icon: 'akar-icons:twitter-fill',        
+    link: 'mailto:vignesh.appani23@gmail.com',
+    icon: 'akar-icons:envelope',
   },
   {
-    link: 'https://github.com/dhavalcode',
+    link: 'https://github.com/Appani23',
     icon: 'akar-icons:github-fill',
   },
   {
-    link: 'https://linkedin.com/in/dhavalcode',
+    link: 'https://linkedin.com/in/vignesh-appani',
     icon: 'akar-icons:linkedin-fill',
   },
 ];
 
-export const HERO_TITLES = ['Dhaval Patel', 'Full-stack Engineer', 'AI Enthusiast'];
+export const HERO_TITLES = [
+  'Vignesh Appani',
+  'Java Backend Developer',
+  
+];
 
 export const aboutParagraph =
-  'Highly motivated and enthusiastic Full Stack Engineer with experience in designing, developing and maintaining web applications using technologies such as Generative AI, Typescript, React, Next.js, Node.js, Python.';
+  'Java developer with 6+ years of experience delivering enterprise and government applications across finance and public sector platforms. Strong in backend engineering using Java, Spring-based architectures, REST APIs, and SQL databases, with hands-on cloud deployments and production support. Focused on clean design, performance, and reliable systems.';
 
-export const contactEmail = 'works.dhaval@gmail.com';
+export const contactEmail = 'vignesh.appani23@gmail.com';
 
-export const documentTitle = 'Hello I am Dhaval Patel | Full Stack Engineer | AI Enthusiast'
+export const documentTitle =
+  'Vignesh Appani | Java Developer';
