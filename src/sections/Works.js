@@ -1,13 +1,9 @@
 import React, { useMemo, useState } from 'react';
-// components
 import Iconify from '../components/Iconify';
 import ProjectCard from '../components/works/ProjectCard';
 import HeadingAnimate from '../components/animate/HeadingAnimate';
 import LoadAnimate from '../components/animate/LoadAnimate';
-// mocks
 import { PROJECTS, PROJECT_CATEGORY, TABS } from '../mock/projects';
-
-// ----------------------------------------------------------------------
 
 export default function Works() {
   const [currentTab, setCurrentTab] = useState(PROJECT_CATEGORY.ALL);
@@ -18,14 +14,13 @@ export default function Works() {
   }, [currentTab]);
 
   const activeClass =
-    'inline-flex min-w-fit items-center gap-2 rounded-full border border-primary-700 bg-primary-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition dark:border-primary-300 dark:bg-primary-300 dark:text-black';
+    'inline-flex min-w-fit items-center gap-2 rounded-full border border-primary-700 bg-primary-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:shadow-md dark:border-primary-300 dark:bg-primary-300 dark:text-black';
 
   const inActiveClass =
-    'inline-flex min-w-fit items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-700 shadow-sm transition hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800';
+    'inline-flex min-w-fit items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-700 shadow-sm transition-all duration-200 hover:bg-neutral-50 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800';
 
   return (
     <section id="works" className="container mx-auto mt-16 px-5 text-center sm:mt-10 md:px-1 scroll-mt-28">
-      {/* ✅ Same heading effect style as Certifications */}
       <HeadingAnimate>
         <h2 className="mb-3 font-lato text-3xl font-semibold text-primary-700 dark:text-primary-300 sm:text-4xl">
           My Works
@@ -33,8 +28,7 @@ export default function Works() {
       </HeadingAnimate>
 
       <p className="mx-auto mb-10 max-w-2xl text-sm text-neutral-600 dark:text-neutral-300 sm:text-base">
-        A curated selection of professional and personal projects — focused on backend systems, modern web apps, and
-        real-world impact.
+        A curated selection of professional and personal projects — focused on backend systems, modern web apps, and real-world impact.
       </p>
 
       <LoadAnimate amount={0}>
@@ -57,10 +51,18 @@ export default function Works() {
             </ul>
           </div>
 
-          {/* Grid */}
-          <div className="mt-8 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {/* Grid (stretch items) */}
+          <div className="mt-8 grid w-full items-stretch gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProjects.map((project, i) => (
-              <ProjectCard key={`project-${i}`} {...project} />
+              <div
+                key={`project-${i}`}
+                className="h-full"
+              >
+                {/* hover on the card wrapper */}
+                <div className="h-full transition-all duration-200 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.03]">
+                  <ProjectCard {...project} />
+                </div>
+              </div>
             ))}
           </div>
 

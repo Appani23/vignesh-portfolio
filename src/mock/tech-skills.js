@@ -35,13 +35,8 @@ export const FRONTEND_SKILLS = [
     icon: 'logos:bootstrap',
     iconClasses: 'text-2xl',
   },
-  {
-    label: 'Tailwind CSS',
-    proficiency: '70%',
-    icon: 'logos:tailwindcss-icon',
-    iconClasses: 'text-2xl',
-  },
 ];
+
 export const BACKEND_SKILLS = [
   {
     label: 'Java',
@@ -97,21 +92,12 @@ export const BACKEND_SKILLS = [
     icon: 'simple-icons:apachekafka',
     iconClasses: 'text-3xl',
   },
-  {
-    label: 'Docker',
-    proficiency: '75%',
-    icon: 'logos:docker-icon',
-    iconClasses: 'text-2xl',
-  },
-  {
-    label: 'Kubernetes',
-    proficiency: '70%',
-    icon: 'logos:kubernetes',
-    iconClasses: 'text-2xl',
-  },
+];
+
+export const CLOUD_DEVOPS_SKILLS = [
   {
     label: 'AWS',
-    proficiency: '75%',
+    proficiency: '80%',
     icon: 'logos:aws',
     iconClasses: 'text-xl',
   },
@@ -122,11 +108,40 @@ export const BACKEND_SKILLS = [
     iconClasses: 'text-3xl',
   },
   {
+    label: 'Docker',
+    proficiency: '80%',
+    icon: 'logos:docker-icon',
+    iconClasses: 'text-2xl',
+  },
+  {
     label: 'Jenkins',
     proficiency: '70%',
     icon: 'simple-icons:jenkins',
     iconClasses: 'text-3xl',
   },
+  {
+    label: 'Kubernetes',
+    proficiency: '70%',
+    icon: 'logos:kubernetes',
+    iconClasses: 'text-2xl',
+  },
+  {
+    label: 'JUnit',
+    proficiency: '75%',
+    icon: 'simple-icons:junit5',
+    iconClasses: 'text-3xl',
+  },
+  {
+    label: 'Selenium',
+    proficiency: '70%',
+    icon: 'simple-icons:selenium',
+    iconClasses: 'text-3xl',
+  },
+];
+
+export const CLOUD_DEVOPS_DESCRIPTIONS = [
+  'CI/CD-friendly deployments with Git-based workflows and containerization.',
+  'Comfortable with cloud hosting, release automation, testing, and environment management.',
 ];
 
 export const FRONTEND_DESCRIPTIONS = [

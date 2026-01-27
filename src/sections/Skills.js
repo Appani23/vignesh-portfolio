@@ -1,110 +1,119 @@
 import React from 'react';
-// components
-import AnimatedLottie from '../components/Lottie';
-import TechSkillIcon from '../components/skills/TechIcon';
-import ListItem from '../components/skills/ListItem';
+import Iconify from '../components/Iconify';
 import HeadingAnimate from '../components/animate/HeadingAnimate';
 import LoadAnimate from '../components/animate/LoadAnimate';
-// mock
+
 import {
-  BACKEND_DESCRIPTIONS,
   BACKEND_SKILLS,
-  FRONTEND_DESCRIPTIONS,
+  CLOUD_DEVOPS_SKILLS,
   FRONTEND_SKILLS,
 } from '../mock/tech-skills';
-import codingAnimationData from '../mock/lottie/coding.json';
-import cloudAnimationData from '../mock/lottie/cloudinfra.json';
 
 // ----------------------------------------------------------------------
 
-export default function Skills() {
+function SkillRow({ label, proficiency, icon, iconClasses }) {
   return (
-    <>
-      {/* Anchor for navbar */}
-      <section
-        id="skills"
-        className="container mx-auto mt-16 px-5 text-center sm:mt-10 md:px-1 scroll-mt-24"
-      >
-        <HeadingAnimate>
-          <h2 className="mb-3 font-lato text-3xl font-semibold text-primary-700 dark:text-primary-300 sm:text-4xl">
-            Skills
-          </h2>
-        </HeadingAnimate>
+    <div className="group rounded-xl border border-neutral-200 bg-white px-3 py-2 shadow-sm transition-all duration-200 hover:-translate-y-[1px] hover:border-violet-300 hover:bg-violet-50/30 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-violet-600/50 dark:hover:bg-violet-500/5">
+      <div className="flex items-center gap-3">
+        {/* icon only */}
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-100 ring-1 ring-neutral-200 transition group-hover:bg-violet-50 dark:bg-neutral-800 dark:ring-neutral-700 dark:group-hover:bg-violet-500/10">
+          <Iconify icon={icon} classes={iconClasses || 'text-2xl'} />
+        </div>
 
-        <p className="mx-auto mb-10 max-w-2xl text-sm text-neutral-600 dark:text-neutral-300 sm:text-base">
-          A focused toolkit for building secure, scalable backend systems and modern web applications.
+        {/* text + progress */}
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center justify-between gap-2">
+            <div className="truncate text-sm font-semibold text-neutral-900 dark:text-neutral-50">
+              {label}
+            </div>
+            <div className="shrink-0 text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+              {proficiency}
+            </div>
+          </div>
+
+          {/* progress bar (always visible) */}
+          <div className="mt-1.5 h-1.5 w-full rounded-full bg-neutral-200 dark:bg-neutral-800">
+            <div
+              className="h-1.5 rounded-full bg-violet-600 transition-all duration-300 dark:bg-violet-400"
+              style={{ width: proficiency }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SkillCard({ title, subtitle, skills }) {
+  return (
+    <div className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900">
+      {/* premium violet glow */}
+      <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-violet-600/10 blur-3xl opacity-50 transition-opacity duration-200 group-hover:opacity-90 dark:bg-violet-400/10" />
+      <div className="pointer-events-none absolute -left-20 -bottom-20 h-52 w-52 rounded-full bg-fuchsia-500/10 blur-3xl opacity-30 transition-opacity duration-200 group-hover:opacity-70 dark:bg-fuchsia-400/10" />
+
+      <div className="relative">
+        <h3 className="text-lg font-semibold tracking-wide text-primary-700 dark:text-primary-300">
+          {title}
+        </h3>
+        <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-300">
+          {subtitle}
         </p>
 
-        {/* Frontend / UI */}
-        <LoadAnimate amount={0}>
-          <div className="container mx-auto my-10 flex flex-col items-center p-5">
-            <div className="mb-8 w-full max-w-lg">
-              <AnimatedLottie animationDataFile={codingAnimationData} />
-            </div>
+        {/* tighter vertical spacing */}
+        <div className="mt-3 flex flex-col gap-2">
+          {skills.map((s, i) => (
+            <SkillRow
+              key={`${title}-skill-${i}`}
+              label={s.label}
+              proficiency={s.proficiency}
+              icon={s.icon}
+              iconClasses={s.iconClasses}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
-            <div className="flex w-full max-w-3xl flex-col items-center text-center">
-              <HeadingAnimate>
-                <h3 className="mb-4 text-xl font-semibold tracking-wide text-primary-700 dark:text-primary-300 sm:text-2xl">
-                  Frontend & UI
-                </h3>
-              </HeadingAnimate>
+export default function Skills() {
+  return (
+    <section
+      id="skills"
+      className="container mx-auto mt-12 px-5 text-center sm:mt-10 md:px-1 scroll-mt-24"
+    >
+      <HeadingAnimate>
+        <h2 className="mb-2 font-lato text-3xl font-semibold text-primary-700 dark:text-primary-300 sm:text-4xl">
+          Skills
+        </h2>
+      </HeadingAnimate>
 
-              <div className="my-3 flex flex-wrap justify-center gap-x-6 gap-y-8">
-                {FRONTEND_SKILLS.map(({ label, icon, proficiency, iconClasses }, i) => (
-                  <TechSkillIcon
-                    key={`frontend-skill-${i}`}
-                    icon={icon}
-                    iconClasses={iconClasses}
-                    label={label}
-                    proficiency={proficiency}
-                  />
-                ))}
-              </div>
+      <p className="mx-auto mb-6 max-w-2xl text-sm text-neutral-600 dark:text-neutral-300 sm:text-base">
+        A focused toolkit for building secure, scalable backend systems and modern web applications.
+      </p>
 
-              <div className="mt-8 w-full space-y-5">
-                {FRONTEND_DESCRIPTIONS.map((paragraph, i) => (
-                  <ListItem key={`frontend-des-${i}`} paragraph={paragraph} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </LoadAnimate>
+      <LoadAnimate amount={0}>
+        {/* smaller gap between cards */}
+        <div className="mx-auto grid w-full max-w-6xl gap-4 lg:grid-cols-3">
+          <SkillCard
+            title="Frontend & UI"
+            subtitle="Modern UI with responsive, clean components."
+            skills={FRONTEND_SKILLS}
+          />
 
-        {/* Backend / Platform */}
-        <LoadAnimate amount={0}>
-          <div className="container mx-auto my-10 flex flex-col items-center p-5">
-            <div className="mb-8 w-full max-w-lg">
-              <AnimatedLottie animationDataFile={cloudAnimationData} />
-            </div>
+          <SkillCard
+            title="Backend & APIs"
+            subtitle="Spring Boot services, microservices, and data layers."
+            skills={BACKEND_SKILLS}
+          />
 
-            <div className="flex w-full max-w-3xl flex-col items-center text-center">
-              <HeadingAnimate>
-                <h3 className="mb-4 text-xl font-semibold tracking-wide text-primary-700 dark:text-primary-300 sm:text-2xl">
-                  Backend, Data & Cloud
-                </h3>
-              </HeadingAnimate>
-
-              <div className="my-3 flex flex-wrap justify-center gap-x-6 gap-y-8">
-                {BACKEND_SKILLS.map(({ icon, iconClasses, label, proficiency }, i) => (
-                  <TechSkillIcon
-                    key={`backend-skill-${i}`}
-                    icon={icon}
-                    iconClasses={iconClasses}
-                    label={label}
-                    proficiency={proficiency}
-                  />
-                ))}
-              </div>
-
-              <div className="mt-8 w-full space-y-5">
-                {BACKEND_DESCRIPTIONS.map((paragraph, i) => (
-                  <ListItem key={`backend-des-${i}`} paragraph={paragraph} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </LoadAnimate>
-      </section>
-    </>
+          <SkillCard
+            title="Cloud, DevOps & Testing"
+            subtitle="CI/CD, containers, cloud, and automation."
+            skills={CLOUD_DEVOPS_SKILLS}
+          />
+        </div>
+      </LoadAnimate>
+    </section>
   );
 }

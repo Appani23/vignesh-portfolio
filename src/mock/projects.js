@@ -37,14 +37,14 @@ export const PROJECTS = [
     techIcons: safeIcons([
       { label: 'Java', icon: 'logos:java' },
       { label: 'Spring Boot', icon: 'simple-icons:springboot' },
-      getSkillByLabel(BACKEND_SKILLS, 'REST Api'),
+      { label: 'REST APIs', icon: 'dashicons:rest-api' },
       { label: 'SQL Server', icon: 'simple-icons:microsoftsqlserver' },
-      getSkillByLabel(BACKEND_SKILLS, 'AWS'),
-      getSkillByLabel(BACKEND_SKILLS, 'Docker'),
+      { label: 'AWS', icon: 'logos:aws' },
+      { label: 'Docker', icon: 'logos:docker-icon' },
     ]),
     description:
       'Modernized government tax applications by building secure backend services, improving performance, and supporting cloud deployments. (Private repo)',
-    repoLink: '', // keep empty if private
+    repoLink: '',
     sourceLink: '',
     category: [PROJECT_CATEGORY.FULL_STACK],
   },
@@ -55,9 +55,9 @@ export const PROJECTS = [
     techIcons: safeIcons([
       { label: 'Java', icon: 'logos:java' },
       { label: 'Spring Boot', icon: 'simple-icons:springboot' },
-      getSkillByLabel(BACKEND_SKILLS, 'REST Api'),
+      { label: 'REST APIs', icon: 'dashicons:rest-api' },
       { label: 'Jenkins', icon: 'simple-icons:jenkins' },
-      { label: 'Kubernetes', icon: 'simple-icons:kubernetes' },
+      { label: 'Kubernetes', icon: 'logos:kubernetes' },
     ]),
     description:
       'Built and supported a request workflow system to streamline migration approvals and tracking. (Private repo)',
@@ -66,12 +66,31 @@ export const PROJECTS = [
     category: [PROJECT_CATEGORY.FULL_STACK],
   },
 
+  // ✅ moved to 3rd position + added React/HTML/CSS icons
+  {
+    imgSrc: '/projects/portfolio.png',
+    title: 'Portfolio Website (Next.js)',
+    techIcons: safeIcons([
+      getSkillByLabel(FRONTEND_SKILLS, 'React'),
+      getSkillByLabel(FRONTEND_SKILLS, 'HTML5'),
+      getSkillByLabel(FRONTEND_SKILLS, 'CSS3'),
+      getSkillByLabel(FRONTEND_SKILLS, 'JavaScript'),
+      { label: 'Next.js', icon: 'cib:next-js' }, // reliable icon even if not in your skills list
+      { label: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' }, // reliable icon
+    ]),
+    description:
+      'Personal portfolio built with Next.js and Tailwind to showcase skills, certifications, experience, and projects in a recruiter-friendly layout.',
+    repoLink: 'https://github.com/Appani23/vignesh-portfolio',
+    sourceLink: '',
+    category: [PROJECT_CATEGORY.OPEN_SOURCE],
+  },
+
   {
     imgSrc: '/projects/developer-search.png',
     title: 'Developer Search Platform',
     techIcons: safeIcons([
-      getSkillByLabel(FRONTEND_SKILLS, 'React.js'),
-      getSkillByLabel(FRONTEND_SKILLS, 'Javascript'),
+      getSkillByLabel(FRONTEND_SKILLS, 'React'),
+      getSkillByLabel(FRONTEND_SKILLS, 'JavaScript'),
       { label: 'Java', icon: 'logos:java' },
       { label: 'Spring Boot', icon: 'simple-icons:springboot' },
       getSkillByLabel(BACKEND_SKILLS, 'MySQL'),
@@ -96,21 +115,6 @@ export const PROJECTS = [
       'Exploratory analysis of COVID-19 data to identify trends and insights using Python-based data tooling and visualizations.',
     repoLink: 'https://github.com/Appani23/covid',
     sourceLink: '',
-    category: [PROJECT_CATEGORY.OPEN_SOURCE],
-  },
-
-  {
-    imgSrc: '/projects/portfolio.png',
-    title: 'Portfolio Website (Next.js)',
-    techIcons: safeIcons([
-      getSkillByLabel(FRONTEND_SKILLS, 'Next.js'),
-      getSkillByLabel(FRONTEND_SKILLS, 'React.js'),
-      getSkillByLabel(FRONTEND_SKILLS, 'Tailwind CSS'),
-    ]),
-    description:
-      'Personal portfolio built with Next.js and Tailwind to showcase skills, certifications, experience, and projects in a recruiter-friendly layout.',
-    repoLink: 'https://github.com/Appani23/vignesh-portfolio',
-    sourceLink: '', // later we’ll add Vercel URL
     category: [PROJECT_CATEGORY.OPEN_SOURCE],
   },
 ];

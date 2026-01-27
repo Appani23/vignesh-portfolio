@@ -45,7 +45,7 @@ export default function HomeHero() {
 
         </motion.div>
         <h1 className="z-50 font-lato text-2xl font-bold sm:text-4xl md:font-semibold">
-          Hi, Im{' '}
+          Hello, I'am{' '}
           <span className="text-primary-700 dark:text-primary-300">
             <Typewriter
               style={{ color: 'inherit' }}
