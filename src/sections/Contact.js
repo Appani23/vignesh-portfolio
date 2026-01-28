@@ -1,10 +1,14 @@
+'use client';
+
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+
 // components
 import Iconify from '../components/Iconify';
 import SocialLinks from '../components/social/SocialLinks';
 import HeadingAnimate from '../components/animate/HeadingAnimate';
 import LoadAnimate from '../components/animate/LoadAnimate';
+
 // mock
 import { contactEmail } from '../mock/profile';
 
@@ -12,24 +16,35 @@ import { contactEmail } from '../mock/profile';
 
 export default function Contact() {
   const [isSending, setIsSending] = useState(false);
-  const formRef = useRef();
+  const [status, setStatus] = useState('');
+  const formRef = useRef(null);
 
   const sendEmail = async (e) => {
     e.preventDefault();
 
+    // ✅ client-safe env variables (must be NEXT_PUBLIC_*)
+    const serviceId = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS env vars missing:', { serviceId, templateId, publicKey });
+      setStatus('Email service is not configured. Please try again later.');
+      return;
+    }
+
     try {
       setIsSending(true);
+      setStatus('');
 
-      await emailjs.sendForm(
-        process.env.EMAIL_SERVICE_ID,
-        process.env.EMAIL_TEMPLATE_ID,
-        formRef.current,
-        process.env.PUBLIC_KEY
-      );
+     await emailjs.sendForm(serviceId, templateId, formRef.current, { publicKey });
+
 
       formRef.current?.reset();
+      setStatus('✅ Message sent successfully!');
     } catch (error) {
-      // intentional
+      console.error('EmailJS send failed:', error);
+      setStatus('❌ Failed to send. Please try again or email me directly.');
     } finally {
       setIsSending(false);
     }
@@ -37,7 +52,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="container mx-auto mt-16 px-5 text-center sm:mt-10 md:px-1 scroll-mt-28">
-      {/* ✅ Same heading effect style as Skills/Certifications */}
       <HeadingAnimate>
         <h2 className="mb-3 font-lato text-3xl font-semibold text-primary-700 dark:text-primary-300 sm:text-4xl">
           Get In Touch
@@ -94,7 +108,10 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="flex w-full justify-end p-2">
+              <div className="flex w-full items-center justify-between p-2">
+                {/* ✅ status message */}
+                <div className="text-sm text-neutral-700 dark:text-neutral-200">{status}</div>
+
                 <button
                   type="submit"
                   disabled={isSending}
