@@ -59,9 +59,9 @@ export default function Contact() {
       </HeadingAnimate>
 
       <p className="mx-auto mb-10 max-w-2xl text-sm text-neutral-600 dark:text-neutral-300 sm:text-base">
-        I’m open to full-time opportunities in Java / Backend / Full Stack. If you’d like to connect, discuss a role, or
-        collaborate — feel free to reach out.
-      </p>
+  Currently open to full-time, W2, and C2C contract roles in Java, Backend, and Full Stack engineering. Let’s connect to discuss how I can contribute to your team or upcoming projects.
+</p>
+
 
       <div className="mx-auto w-full max-w-2xl text-left">
         <LoadAnimate amount={0}>
@@ -141,7 +141,6 @@ export default function Contact() {
                     classes="inline-block mr-1 text-lg text-primary-700 dark:text-primary-300"
                     icon="bytesize:location"
                   />
-                  Albany, New York
                   <br />
                   United States
                 </p>

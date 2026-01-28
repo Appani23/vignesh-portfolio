@@ -20,7 +20,13 @@ export const HERO_TITLES = [
 ];
 
 export const aboutParagraph =
-  'Java developer with 6+ years of experience delivering enterprise and government applications across finance and public sector platforms. Strong in backend engineering using Java, Spring-based architectures, REST APIs, and SQL databases, with hands-on cloud deployments and production support. Focused on clean design, performance, and reliable systems.';
+  "I’m a Java Developer who enjoys building reliable, scalable systems that solve real-world problems. With over 6 years of experience across government and enterprise platforms, I specialize in designing backend architectures using Java, Spring Boot, REST APIs, and SQL databases. I’ve worked on high-impact systems where performance, security, and stability truly matter. I care about clean code, thoughtful design, and building software that teams can confidently grow and maintain.";
+
+export const dailyTech =
+  "Java • Spring Boot • REST APIs • SQL • Microservices • Docker • Cloud Deployments";
+
+export const personalLine =
+  "I enjoy solving complex backend challenges and turning them into clean, maintainable systems.";
 
 export const contactEmail = 'vignesh.appani23@gmail.com';
 

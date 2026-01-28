@@ -7,7 +7,7 @@ const CERTIFICATIONS = [
   {
     name: 'AWS Certified Developer – Associate',
     org: 'Amazon Web Services',
-    year: '2025',
+    year: '2026',
     tag: 'Credential',
     image: '/certifications/aws-dev-associate.png',
     url: 'https://www.credly.com/badges/26029eb7-e92b-481e-9366-0a38f794e22c/public_url',

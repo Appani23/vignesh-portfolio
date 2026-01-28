@@ -1,13 +1,13 @@
 export const FRONTEND_SKILLS = [
   {
     label: 'React',
-    proficiency: '75%',
+    proficiency: '90%',
     icon: 'vscode-icons:file-type-reactjs',
     iconClasses: 'text-2xl',
   },
   {
     label: 'Angular',
-    proficiency: '70%',
+    proficiency: '80%',
     icon: 'logos:angular-icon',
     iconClasses: 'text-2xl',
   },
@@ -19,19 +19,19 @@ export const FRONTEND_SKILLS = [
   },
   {
     label: 'HTML5',
-    proficiency: '80%',
+    proficiency: '95%',
     icon: 'vscode-icons:file-type-html',
     iconClasses: 'text-3xl',
   },
   {
     label: 'CSS3',
-    proficiency: '75%',
+    proficiency: '95%',
     icon: 'vscode-icons:file-type-css',
     iconClasses: 'text-3xl',
   },
   {
     label: 'Bootstrap',
-    proficiency: '75%',
+    proficiency: '85%',
     icon: 'logos:bootstrap',
     iconClasses: 'text-2xl',
   },
@@ -40,7 +40,7 @@ export const FRONTEND_SKILLS = [
 export const BACKEND_SKILLS = [
   {
     label: 'Java',
-    proficiency: '90%',
+    proficiency: '95%',
     icon: 'logos:java',
     iconClasses: 'text-3xl',
   },
@@ -64,7 +64,7 @@ export const BACKEND_SKILLS = [
   },
   {
     label: 'SQL Server',
-    proficiency: '85%',
+    proficiency: '90%',
     icon: 'simple-icons:microsoftsqlserver',
     iconClasses: 'text-3xl',
   },
@@ -97,13 +97,13 @@ export const BACKEND_SKILLS = [
 export const CLOUD_DEVOPS_SKILLS = [
   {
     label: 'AWS',
-    proficiency: '80%',
+    proficiency: '90%',
     icon: 'logos:aws',
     iconClasses: 'text-xl',
   },
   {
     label: 'Git/GitHub',
-    proficiency: '85%',
+    proficiency: '90%',
     icon: 'akar-icons:github-fill',
     iconClasses: 'text-3xl',
   },
@@ -115,7 +115,7 @@ export const CLOUD_DEVOPS_SKILLS = [
   },
   {
     label: 'Jenkins',
-    proficiency: '70%',
+    proficiency: '80%',
     icon: 'simple-icons:jenkins',
     iconClasses: 'text-3xl',
   },
@@ -133,7 +133,7 @@ export const CLOUD_DEVOPS_SKILLS = [
   },
   {
     label: 'Selenium',
-    proficiency: '70%',
+    proficiency: '75%',
     icon: 'simple-icons:selenium',
     iconClasses: 'text-3xl',
   },
