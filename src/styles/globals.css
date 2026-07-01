@@ -6,59 +6,68 @@
   .animation-delay-2000 {
     animation-delay: 2s;
   }
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+
+  /* Glass card — backdrop blur with subtle border */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md dark:bg-neutral-900/60;
+  }
+
+  /* Gradient text shorthand */
+  .text-gradient {
+    @apply bg-gradient-to-r from-violet-600 via-fuchsia-500 to-blue-500 bg-clip-text text-transparent dark:from-violet-400 dark:via-fuchsia-400 dark:to-blue-300;
+  }
 }
 
+/* ─── SCROLL BEHAVIOUR ───────────────────────────────────────────────────────
+   Removing the global scroll-behavior: smooth on html fixes the "two-gesture"
+   lag bug where CSS smooth-scroll queues successive wheel events.
+   Smooth scrolling for anchor / keyboard navigation is applied selectively
+   inside a focus-within scope so trackpad/wheel events stay native-fast.       */
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ─── MINIMAL SCROLLBAR (right-side bar replaced by top progress bar) ────── */
 html {
-  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.25) transparent;
 }
-
 ::-webkit-scrollbar {
-  width: 10px;
-  background-color: #383838;
-}
-
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #6b6b6b;
-  border: 46px none #ffffff;
-  border-radius: 7px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(12, 164, 235, 0.6);
-}
-::-webkit-scrollbar-thumb:active {
-  background: rgba(12, 164, 235, 0.6);
+  width: 4px;
+  background: transparent;
 }
 ::-webkit-scrollbar-track {
-  background: #383838;
-  border: 50px none #ffffff;
-  border-radius: 0px;
+  background: transparent;
 }
-::-webkit-scrollbar-track:hover {
-  background: #3b3b3b;
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.25);
+  border-radius: 2px;
 }
-::-webkit-scrollbar-track:active {
-  background: #333333;
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
 
+/* ─── WORKS TAB ─────────────────────────────────────────────────────────── */
 #works-tab {
   overflow-x: scroll;
   scrollbar-width: none !important;
 }
-
 #works-tab::-webkit-scrollbar {
   display: none !important;
 }
 
+/* ─── MOUSE SCROLL INDICATOR ─────────────────────────────────────────────── */
 #mouse-scroll {
   -webkit-transform: translateX(-50%);
 }
@@ -68,7 +77,6 @@ html {
   height: 5px;
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
   transform: rotate(45deg);
   margin: 0 0 3px 8px;
 }
@@ -136,25 +144,59 @@ html {
     transform: translateY(6px);
   }
 }
+
 @-webkit-keyframes mouse-scroll {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
 }
+
 @keyframes mouse-scroll {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
+  0% { opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* ─── HERO BACKGROUND ────────────────────────────────────────────────────── */
+.hero-bg-glow {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139, 92, 246, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+}
+
+/* ─── SECTION ACCENT UNDERLINE ───────────────────────────────────────────── */
+@keyframes underline-grow {
+  from { width: 0; }
+  to   { width: 4rem; }
+}
+
+.section-underline {
+  animation: underline-grow 0.6s ease-out forwards;
+}
+
+/* ─── NOISE TEXTURE (subtle grain for depth) ─────────────────────────────── */
+.bg-noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  z-index: 9998;
+}
+
+/* ─── CARD IMAGE ZOOM ────────────────────────────────────────────────────── */
+.img-zoom {
+  transition: transform 0.5s ease;
+}
+.group:hover .img-zoom {
+  transform: scale(1.05);
+}
+
+/* ─── PROGRESS BAR (no animation for reduced-motion) ────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .section-underline {
+    animation: none;
+    width: 4rem;
   }
 }

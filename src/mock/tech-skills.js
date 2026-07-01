@@ -6,6 +6,12 @@ export const FRONTEND_SKILLS = [
     iconClasses: 'text-2xl',
   },
   {
+    label: 'TypeScript',
+    proficiency: '75%',
+    icon: 'logos:typescript-icon',
+    iconClasses: 'text-2xl',
+  },
+  {
     label: 'Angular',
     proficiency: '80%',
     icon: 'logos:angular-icon',
@@ -91,6 +97,18 @@ export const BACKEND_SKILLS = [
     proficiency: '75%',
     icon: 'simple-icons:apachekafka',
     iconClasses: 'text-3xl',
+  },
+  {
+    label: 'Redis',
+    proficiency: '75%',
+    icon: 'logos:redis',
+    iconClasses: 'text-2xl',
+  },
+  {
+    label: 'Claude API',
+    proficiency: '80%',
+    icon: 'simple-icons:anthropic',
+    iconClasses: 'text-2xl',
   },
 ];
 

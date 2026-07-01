@@ -9,7 +9,7 @@ import Certifications from '../sections/Certifications';
 import Works from '../sections/Works';
 import Contact from '../sections/Contact';
 // mock
-import { documentTitle } from '../mock/profile';
+import { documentTitle, metaDescription } from '../mock/profile';
 
 // ------------------------------------------------
 
@@ -17,6 +17,9 @@ export default function Home() {
   const meta = (
     <>
       <title>{documentTitle}</title>
+      <meta name="description" content={metaDescription} />
+      <meta property="og:title" content={documentTitle} />
+      <meta property="og:description" content={metaDescription} />
     </>
   );
 

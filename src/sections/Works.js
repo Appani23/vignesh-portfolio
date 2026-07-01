@@ -1,9 +1,19 @@
 import React, { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 import Iconify from '../components/Iconify';
 import ProjectCard from '../components/works/ProjectCard';
-import HeadingAnimate from '../components/animate/HeadingAnimate';
+import SectionHeader from '../components/SectionHeader';
 import LoadAnimate from '../components/animate/LoadAnimate';
 import { PROJECTS, PROJECT_CATEGORY, TABS } from '../mock/projects';
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, delay: i * 0.1, ease: 'easeOut' },
+  }),
+};
 
 export default function Works() {
   const [currentTab, setCurrentTab] = useState(PROJECT_CATEGORY.ALL);
@@ -13,29 +23,29 @@ export default function Works() {
     return PROJECTS.filter((p) => Array.isArray(p.category) && p.category.includes(currentTab));
   }, [currentTab]);
 
+  const featuredProjects = useMemo(() => filteredProjects.filter((p) => p.featured), [filteredProjects]);
+  const standardProjects = useMemo(() => filteredProjects.filter((p) => !p.featured), [filteredProjects]);
+
   const activeClass =
-    'inline-flex min-w-fit items-center gap-2 rounded-full border border-primary-700 bg-primary-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:shadow-md dark:border-primary-300 dark:bg-primary-300 dark:text-black';
+    'inline-flex min-w-fit items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:shadow-lg';
 
   const inActiveClass =
-    'inline-flex min-w-fit items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-700 shadow-sm transition-all duration-200 hover:bg-neutral-50 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:bg-neutral-800';
+    'inline-flex min-w-fit items-center gap-2 rounded-full border border-neutral-200 bg-white/70 px-4 py-2 text-sm font-semibold text-neutral-700 shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700 dark:border-neutral-700 dark:bg-neutral-900/60 dark:text-neutral-200 dark:hover:border-violet-600 dark:hover:text-violet-300';
 
   return (
-    <section id="works" className="container mx-auto mt-16 px-5 text-center sm:mt-10 md:px-1 scroll-mt-28">
-      <HeadingAnimate>
-        <h2 className="mb-3 font-lato text-3xl font-semibold text-primary-700 dark:text-primary-300 sm:text-4xl">
-          My Works
-        </h2>
-      </HeadingAnimate>
-
-      <p className="mx-auto mb-10 max-w-2xl text-sm text-neutral-600 dark:text-neutral-300 sm:text-base">
-        A curated selection of professional and personal projects — focused on backend systems, modern web apps, and real-world impact.
-      </p>
+    <section id="works" className="container mx-auto mt-20 px-5 text-center sm:mt-16 md:px-1 scroll-mt-28">
+      <SectionHeader
+        kicker="PROJECTS"
+        title="My"
+        highlight="Works"
+        subtitle="A curated selection of professional and personal projects — backend systems, AI integration, and real-world impact."
+      />
 
       <LoadAnimate amount={0}>
         <div className="flex w-full flex-col items-center">
           {/* Tabs */}
           <div className="w-full overflow-x-auto pb-2">
-            <ul className="mx-auto flex w-fit gap-3">
+            <ul className="mx-auto flex w-fit gap-2">
               {TABS.map((tab, i) => (
                 <li
                   key={`tab-${i}`}
@@ -43,6 +53,7 @@ export default function Works() {
                   className={currentTab === tab.value ? activeClass : inActiveClass}
                   role="button"
                   tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setCurrentTab(tab.value)}
                 >
                   <Iconify icon={tab.icon} />
                   <span>{tab.label}</span>
@@ -51,24 +62,58 @@ export default function Works() {
             </ul>
           </div>
 
-          {/* Grid (stretch items) */}
-          <div className="mt-8 grid w-full items-stretch gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredProjects.map((project, i) => (
-              <div
-                key={`project-${i}`}
-                className="h-full"
-              >
-                {/* hover on the card wrapper */}
-                <div className="h-full transition-all duration-200 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.03]">
-                  <ProjectCard {...project} />
-                </div>
+          {/* Featured */}
+          {featuredProjects.length > 0 && (
+            <div className="mt-10 w-full">
+              <p className="mb-4 text-left text-[10px] font-bold uppercase tracking-[0.25em] text-violet-500 dark:text-violet-400">
+                ★ Featured
+              </p>
+              <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
+                {featuredProjects.map((project, i) => (
+                  <motion.div
+                    key={`featured-${i}`}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={cardVariants}
+                    className="h-full"
+                  >
+                    <ProjectCard {...project} />
+                  </motion.div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
 
-          {/* Empty state */}
+          {/* Standard */}
+          {standardProjects.length > 0 && (
+            <div className={`w-full ${featuredProjects.length > 0 ? 'mt-10' : 'mt-8'}`}>
+              {featuredProjects.length > 0 && (
+                <p className="mb-4 text-left text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500">
+                  More Projects
+                </p>
+              )}
+              <div className="grid w-full items-stretch grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                {standardProjects.map((project, i) => (
+                  <motion.div
+                    key={`standard-${i}`}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={cardVariants}
+                    className="h-full"
+                  >
+                    <ProjectCard {...project} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {filteredProjects.length === 0 && (
-            <div className="mt-10 rounded-2xl border border-neutral-200 bg-white p-8 text-center text-sm text-neutral-600 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300">
+            <div className="mt-10 rounded-2xl border border-neutral-200 bg-white/70 p-8 text-center text-sm text-neutral-600 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/60 dark:text-neutral-300">
               No projects found for this category yet.
             </div>
           )}
