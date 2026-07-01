@@ -5,10 +5,11 @@ export default function SectionHeader({ kicker, title, highlight, subtitle }) {
   return (
     <motion.div
       className="mb-10 text-center"
-      initial={{ opacity: 0, y: 20 }}
+      style={{ willChange: 'transform, opacity' }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.1, margin: '0px 0px -50px 0px' }}
     >
       {kicker && (
         <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.25em] text-violet-500 dark:text-violet-400">

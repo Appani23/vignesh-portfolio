@@ -79,7 +79,7 @@ export default function Contact() {
       <div className="mx-auto w-full max-w-2xl text-left">
         <LoadAnimate amount={0}>
           {/* Glass form card */}
-          <div className="rounded-2xl border border-white/30 bg-white/60 p-8 shadow-[0_8px_40px_rgba(139,92,246,0.08)] backdrop-blur-md dark:border-neutral-700/50 dark:bg-neutral-900/60">
+          <div className="rounded-2xl border border-white/30 bg-white/95 p-8 shadow-[0_8px_40px_rgba(139,92,246,0.08)] md:bg-white/60 md:backdrop-blur-md dark:bg-neutral-900/95 dark:border-neutral-700/50 md:dark:bg-neutral-900/60">
             {status === 'success' ? (
               <div className="flex flex-col items-center gap-4 py-8 text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">

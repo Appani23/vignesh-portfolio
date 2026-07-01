@@ -99,15 +99,15 @@ export default function Experience() {
           {EXPERIENCE.map((item, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              className="group relative overflow-hidden rounded-3xl border border-neutral-200/70 bg-white/70 p-6 shadow-md backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/30 hover:bg-gradient-to-br hover:from-violet-500/[0.03] hover:to-blue-500/[0.03] hover:shadow-xl dark:border-neutral-700/60 dark:bg-neutral-900/60 dark:hover:border-violet-400/30 md:p-8"
+              transition={{ duration: 0.35, delay: idx * 0.06, ease: 'easeOut' }}
+              viewport={{ once: true, amount: 0.05, margin: '0px 0px -60px 0px' }}
+              className="group relative overflow-hidden rounded-3xl border border-neutral-200/70 bg-white p-6 shadow-md md:bg-white/70 md:backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/30 hover:bg-gradient-to-br hover:from-violet-500/[0.03] hover:to-blue-500/[0.03] hover:shadow-xl dark:border-neutral-700/60 dark:bg-neutral-900 md:dark:bg-neutral-900/60 dark:hover:border-violet-400/30 md:p-8"
             >
-              {/* Glow orbs */}
-              <div className="pointer-events-none absolute -left-24 -top-24 h-56 w-56 rounded-full bg-violet-500/10 blur-3xl opacity-50 group-hover:opacity-90 transition-opacity duration-300" />
-              <div className="pointer-events-none absolute -right-24 -bottom-24 h-56 w-56 rounded-full bg-blue-500/10 blur-3xl opacity-40 group-hover:opacity-80 transition-opacity duration-300" />
+              {/* Glow orbs — hidden on mobile to avoid blur-3xl compositing cost */}
+              <div className="pointer-events-none absolute -left-24 -top-24 h-56 w-56 rounded-full bg-violet-500/10 blur-3xl opacity-50 group-hover:opacity-90 transition-opacity duration-300 hidden md:block" />
+              <div className="pointer-events-none absolute -right-24 -bottom-24 h-56 w-56 rounded-full bg-blue-500/10 blur-3xl opacity-40 group-hover:opacity-80 transition-opacity duration-300 hidden md:block" />
 
               <div className="relative">
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">

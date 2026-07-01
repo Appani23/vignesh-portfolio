@@ -201,6 +201,40 @@ html {
   }
 }
 
+/* ─── SKILL BAR SHIMMER ──────────────────────────────────────────────────── */
+/* Pure CSS loop — no scroll trigger, no IntersectionObserver, no JS.        */
+/* The shimmer sweeps left-to-right on an infinite 3s ease-in-out cycle.     */
+/* Both start and end positions are off-screen, so the loop-reset is         */
+/* invisible — no flash or jump at the boundary.                             */
+@keyframes skill-bar-shimmer {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(300%); }
+}
+
+.skill-bar-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent    0%,
+    rgba(255, 255, 255, 0.36) 50%,
+    transparent  100%
+  );
+  animation: skill-bar-shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Disable the shimmer loop for users who prefer reduced motion.             */
+/* The bar still shows at full width — only the looping animation stops.     */
+@media (prefers-reduced-motion: reduce) {
+  .skill-bar-shimmer {
+    animation: none;
+  }
+}
+
 /* ─── CUSTOM CURSOR (fine pointer / desktop only) ────────────────────────── */
 /* Activated only when the JS component adds .custom-cursor-active to <html>  */
 .custom-cursor-active,

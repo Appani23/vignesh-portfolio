@@ -7,11 +7,11 @@ import LoadAnimate from '../components/animate/LoadAnimate';
 import { PROJECTS, PROJECT_CATEGORY, TABS } from '../mock/projects';
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 18 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, delay: i * 0.1, ease: 'easeOut' },
+    transition: { duration: 0.3, delay: i * 0.05, ease: 'easeOut' },
   }),
 };
 
@@ -75,7 +75,7 @@ export default function Works() {
                     custom={i}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
+                    viewport={{ once: true, amount: 0.05, margin: '0px 0px -60px 0px' }}
                     variants={cardVariants}
                     className="h-full"
                   >
@@ -101,7 +101,7 @@ export default function Works() {
                     custom={i}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.1 }}
+                    viewport={{ once: true, amount: 0.05, margin: '0px 0px -60px 0px' }}
                     variants={cardVariants}
                     className="h-full"
                   >

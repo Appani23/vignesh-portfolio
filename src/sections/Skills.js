@@ -1,13 +1,15 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import Iconify from '../components/Iconify';
 import SectionHeader from '../components/SectionHeader';
-import LoadAnimate from '../components/animate/LoadAnimate';
 import {
   BACKEND_SKILLS,
   CLOUD_DEVOPS_SKILLS,
   FRONTEND_SKILLS,
 } from '../mock/tech-skills';
+
+// Cards are plain divs — fully visible the instant they paint, zero IO gate.
+// Bars render at full width immediately with a CSS-only looping shimmer sheen.
+// No framer-motion, no whileInView, no IntersectionObserver on any bar.
 
 function SkillRow({ label, proficiency, icon, iconClasses, index }) {
   return (
@@ -27,15 +29,20 @@ function SkillRow({ label, proficiency, icon, iconClasses, index }) {
             </span>
           </div>
 
-          {/* Animated progress bar */}
-          <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-700">
-            <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-violet-600 to-blue-400 dark:from-violet-400 dark:to-blue-300"
-              initial={{ width: '0%' }}
-              whileInView={{ width: proficiency }}
-              transition={{ duration: 0.75, delay: 0.08 + (index || 0) * 0.07, ease: 'easeOut' }}
-              viewport={{ once: true, amount: 0.5 }}
-            />
+          {/* Track — subtle accent glow around the container */}
+          <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-neutral-200 shadow-[0_0_4px_rgba(139,92,246,0.18)] dark:bg-neutral-700 dark:shadow-[0_0_4px_rgba(167,139,250,0.18)]">
+            {/* Fill — static width, gradient, hosts the CSS shimmer child */}
+            <div
+              className="relative h-full overflow-hidden rounded-full bg-gradient-to-r from-violet-600 to-blue-400 dark:from-violet-400 dark:to-blue-300"
+              style={{ width: proficiency }}
+            >
+              {/* Shimmer: pure CSS loop, scroll-independent, respects reduced-motion */}
+              <div
+                className="skill-bar-shimmer"
+                style={{ animationDelay: `${-((index || 0) * 0.45)}s` }}
+                aria-hidden="true"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -45,16 +52,9 @@ function SkillRow({ label, proficiency, icon, iconClasses, index }) {
 
 function SkillCard({ title, skills }) {
   return (
-    <motion.div
-      className="group relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/70 p-5 shadow-md backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-700/60 dark:bg-neutral-900/60"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      {/* Premium glow */}
-      <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-violet-600/10 blur-3xl opacity-50 transition-opacity duration-300 group-hover:opacity-90 dark:bg-violet-400/10" />
-      <div className="pointer-events-none absolute -left-20 -bottom-20 h-52 w-52 rounded-full bg-fuchsia-500/10 blur-3xl opacity-30 transition-opacity duration-300 group-hover:opacity-70 dark:bg-fuchsia-400/10" />
+    <div className="group relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-white p-5 shadow-md md:bg-white/70 md:backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-neutral-700/60 dark:bg-neutral-900 md:dark:bg-neutral-900/60">
+      <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-violet-600/10 blur-3xl opacity-50 transition-opacity duration-300 group-hover:opacity-90 dark:bg-violet-400/10 hidden md:block" />
+      <div className="pointer-events-none absolute -left-20 -bottom-20 h-52 w-52 rounded-full bg-fuchsia-500/10 blur-3xl opacity-30 transition-opacity duration-300 group-hover:opacity-70 dark:bg-fuchsia-400/10 hidden md:block" />
 
       <div className="relative">
         <h3 className="mb-4 bg-gradient-to-r from-violet-600 to-blue-500 bg-clip-text text-base font-bold tracking-wide text-transparent dark:from-violet-400 dark:to-blue-300">
@@ -74,7 +74,7 @@ function SkillCard({ title, skills }) {
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -88,13 +88,11 @@ export default function Skills() {
         subtitle="A focused toolkit for building secure, scalable backend systems and modern web applications."
       />
 
-      <LoadAnimate amount={0}>
-        <div className="mx-auto grid w-full max-w-6xl gap-5 lg:grid-cols-3">
-          <SkillCard title="Frontend & UI" skills={FRONTEND_SKILLS} />
-          <SkillCard title="Backend & APIs" skills={BACKEND_SKILLS} />
-          <SkillCard title="Cloud, DevOps & AI" skills={CLOUD_DEVOPS_SKILLS} />
-        </div>
-      </LoadAnimate>
+      <div className="mx-auto grid w-full max-w-6xl gap-5 lg:grid-cols-3">
+        <SkillCard title="Frontend & UI" skills={FRONTEND_SKILLS} />
+        <SkillCard title="Backend & APIs" skills={BACKEND_SKILLS} />
+        <SkillCard title="Cloud, DevOps & AI" skills={CLOUD_DEVOPS_SKILLS} />
+      </div>
     </section>
   );
 }

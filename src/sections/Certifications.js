@@ -56,11 +56,11 @@ const CERTIFICATIONS = [
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, delay: i * 0.08, ease: 'easeOut' },
+    transition: { duration: 0.3, delay: i * 0.04, ease: 'easeOut' },
   }),
 };
 
@@ -85,13 +85,13 @@ export default function Certifications() {
               custom={i}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.05, margin: '0px 0px -60px 0px' }}
               variants={cardVariants}
-              className="group relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-white/70 p-6 text-left shadow-md backdrop-blur-md transition-all duration-300 will-change-transform hover:-translate-y-1 hover:shadow-xl dark:border-neutral-700/60 dark:bg-neutral-900/60"
+              className="group relative overflow-hidden rounded-2xl border border-neutral-200/60 bg-white p-6 text-left shadow-md md:bg-white/70 md:backdrop-blur-md transition-all duration-300 will-change-transform hover:-translate-y-1 hover:shadow-xl dark:border-neutral-700/60 dark:bg-neutral-900 md:dark:bg-neutral-900/60"
             >
-              {/* Glow blobs */}
-              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-violet-600/10 blur-3xl opacity-50 transition-opacity duration-300 group-hover:opacity-90 dark:bg-violet-400/10" />
-              <div className="pointer-events-none absolute -left-16 -bottom-16 h-48 w-48 rounded-full bg-fuchsia-500/10 blur-3xl opacity-30 transition-opacity duration-300 group-hover:opacity-70 dark:bg-fuchsia-400/10" />
+              {/* Glow blobs — hidden on mobile to avoid blur-3xl compositing cost */}
+              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-violet-600/10 blur-3xl opacity-50 transition-opacity duration-300 group-hover:opacity-90 dark:bg-violet-400/10 hidden md:block" />
+              <div className="pointer-events-none absolute -left-16 -bottom-16 h-48 w-48 rounded-full bg-fuchsia-500/10 blur-3xl opacity-30 transition-opacity duration-300 group-hover:opacity-70 dark:bg-fuchsia-400/10 hidden md:block" />
 
               <div className="relative z-10 flex items-start gap-4">
                 {/* Badge */}
