@@ -9,47 +9,47 @@ function FeaturedProjectCard({ imgSrc, title, hook, description, repoLink, techI
       <div className="relative flex h-full flex-col overflow-hidden rounded-[14px] bg-white dark:bg-neutral-900">
 
         {/* Image / gradient header */}
-        <div
-          className="relative h-[220px] flex-shrink-0 overflow-hidden"
-          style={{
-            backgroundImage: imgSrc ? `url(${imgSrc})` : undefined,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center top',
-            backgroundColor: '#1e1b4b',
-            transition: 'background-size 0.5s ease',
-          }}
-        >
-          {/* Hover zoom via inner scale (CSS group trick) */}
-          <div
-            className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105"
-            style={{
-              backgroundImage: imgSrc ? `url(${imgSrc})` : undefined,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center top',
-            }}
-          />
+        <div className="relative h-[220px] flex-shrink-0 overflow-hidden bg-[#1e1b4b]">
 
-          {/* Bottom gradient — keeps text readable over any image */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-          {/* Top tint for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-br from-violet-600/40 via-transparent to-blue-600/30" />
-
-          {/* FuelBuddy watermark — shows when no real screenshot */}
-          {showWatermark && (
-            <svg
-              viewBox="0 0 24 24"
-              fill="white"
-              className="pointer-events-none absolute bottom-10 right-6 h-32 w-32 opacity-[0.06]"
-              aria-hidden="true"
-            >
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-              <circle cx="12" cy="9" r="6" fill="none" stroke="white" strokeWidth="0.5" opacity="0.4" />
-            </svg>
+          {showWatermark ? (
+            /* ── FuelBuddy branded placeholder (no screenshot available) ──── */
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0b1f3a] via-[#0d3045] to-[#084a40]">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                <svg viewBox="0 0 24 24" fill="none" className="h-14 w-14 text-teal-300/65" aria-hidden="true">
+                  <path d="M3 22V7l6-4 6 4v15H3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                  <path d="M9 22v-6h3v6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                  <path d="M15 7h2a2 2 0 012 2v5a1 1 0 001 1h0a1 1 0 001-1V9l-2-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M5 11h7M5 8h7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                <span className="text-[11px] font-bold tracking-[0.3em] uppercase text-teal-200/45">FuelBuddy</span>
+              </div>
+              <div className="pointer-events-none absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-teal-400/8 blur-3xl" />
+              <div className="pointer-events-none absolute -left-4 top-4 h-28 w-28 rounded-full bg-blue-400/8 blur-2xl" />
+            </div>
+          ) : (
+            /* ── Real screenshot: darkened + hover zoom ──────────────────── */
+            <div
+              className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105"
+              style={{
+                backgroundImage: imgSrc ? `url(${imgSrc})` : undefined,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
+                filter: 'brightness(0.75)',
+              }}
+            />
           )}
 
-          {/* Glow accents */}
-          <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-violet-400/25 blur-2xl" />
-          <div className="pointer-events-none absolute -left-10 bottom-0 h-24 w-24 rounded-full bg-fuchsia-400/20 blur-2xl" />
+          {/* Bottom gradient — text legibility over image or placeholder */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+
+          {/* Violet tint on real screenshots only */}
+          {!showWatermark && (
+            <div className="absolute inset-0 bg-gradient-to-br from-violet-600/25 via-transparent to-blue-600/15" />
+          )}
+
+          {/* Ambient glow */}
+          <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-violet-400/20 blur-2xl" />
+          <div className="pointer-events-none absolute -left-10 bottom-0 h-24 w-24 rounded-full bg-fuchsia-400/15 blur-2xl" />
 
           {/* Featured badge */}
           <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-white/25 bg-white/15 px-3 py-1 text-xs font-bold text-white shadow-sm backdrop-blur-sm">
@@ -59,7 +59,7 @@ function FeaturedProjectCard({ imgSrc, title, hook, description, repoLink, techI
 
           {/* Hook text — bottom */}
           <div className="absolute bottom-0 left-0 right-0 p-4">
-            <p className="text-sm font-semibold italic text-white/90 drop-shadow">"{hook}"</p>
+            <p className="text-sm font-semibold italic text-white/90 drop-shadow">&ldquo;{hook}&rdquo;</p>
           </div>
         </div>
 

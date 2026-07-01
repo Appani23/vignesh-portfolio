@@ -3,6 +3,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import ScrollProgressBar from '../components/ScrollProgressBar';
+import CustomCursor from '../components/CustomCursor';
 import useDarkMode from '../hooks/useDarkMode';
 
 export default function MainLayout({ children, meta }) {
@@ -18,7 +19,7 @@ export default function MainLayout({ children, meta }) {
         <link rel="apple-touch-icon" href="/vikky.png" />
       </Head>
 
-      {/* Top scroll-progress bar (replaces right-side scrollbar indicator) */}
+      <CustomCursor />
       <ScrollProgressBar />
 
       <Header darkModeEnabled={darkModeEnabled} toggleMode={toggleMode} />
